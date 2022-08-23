@@ -22,10 +22,12 @@ class GameOfLifeTest {
         List<String> gameListExpected = gameStreamInput.collect(Collectors.toList());
         ClassLoader classLoader = GameOfLife.class.getClassLoader();
         Stream<String> gameStreamResult = new BufferedReader(
-            new InputStreamReader(classLoader.getSystemResourceAsStream(result))).lines();
+            new InputStreamReader(ClassLoader.getSystemResourceAsStream(result))).lines();
         List<String> gameListResult = gameStreamResult.collect(Collectors.toList());
         return gameListExpected.equals(gameListResult);
     }
+
+
 
     @Test
     public void stableFigure() throws IOException {

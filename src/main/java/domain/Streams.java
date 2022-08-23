@@ -4,9 +4,10 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class Streams {
+    static private String path="src/test/resources/";
 
     public static void inputFile(String fileNameInput) throws IOException {
-        FileReader fr = new FileReader(fileNameInput);
+        FileReader fr = new FileReader(path+fileNameInput);
         BufferedReader reader = new BufferedReader(fr);
         String line = reader.readLine( );
         String[] taskСonditions = line.split(",");
@@ -16,8 +17,7 @@ public class Streams {
         Engine.setX(x);
         Engine.setNumberOfLives(Integer.parseInt(taskСonditions[2]));
         char[][] input = new char[y][x];
-        char[] tmp = new char[x];
-
+        char[] tmp ;
             for (int i = 0; i < y; i++) {
                 line = reader.readLine( );
                 if (line==null){ break;}
@@ -35,7 +35,7 @@ public class Streams {
 
 
     public static void outputFile(String fileNameOutput) throws IOException {
-        StringBuilder stringBuilder = new StringBuilder( );
+               StringBuilder stringBuilder = new StringBuilder( );
         char[][] tmp = Engine.getFieldOfLife( );
         for (int G = 0; G < Engine.getY( ); G++) {
             for (int E = 0; E < Engine.getX( ); E++) {
@@ -43,10 +43,11 @@ public class Streams {
             }
             stringBuilder.deleteCharAt(stringBuilder.length( ) - 1);
             stringBuilder.append("\n");
-            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileNameOutput), StandardCharsets.UTF_8));
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path+fileNameOutput)));
             out.append(stringBuilder);
             out.close( );
         }
+
     }
 }
 

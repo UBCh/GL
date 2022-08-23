@@ -4,10 +4,10 @@ public class Engine {
     public Engine() {
     }
 
-    static int y;
-    static int x;
-    static int numberOfLives;
-    static char[][] fieldOfLife;
+     private static int y;
+    private static int x;
+    private static int numberOfLives;
+    private static char[][] fieldOfLife;
 
     public static void setFieldOfLife(char[][] fieldOfLife) {
         Engine.fieldOfLife = fieldOfLife;
@@ -39,8 +39,9 @@ public class Engine {
 
 
     public static void lifeCycle() {
-        char[][] newLife = new char[y][x];
+        char[][] newLife;
         for (int life = 0; life < numberOfLives; life++) {
+            newLife = new char[y][x];
             for (int i = 0; i < y; i++) {
 
                 for (int j = 0; j < x; j++) {
@@ -57,37 +58,41 @@ public class Engine {
     }
 
 
-    static char weСheckЕheМiability(int v, int h) {
+    private static char weСheckЕheМiability(int v, int h) {
         int lifeСounter = 0;
-        String celuli = String.valueOf(fieldOfLife[v][h]);
-        String tmp = "";
+        char celuli = fieldOfLife[v][h];
+       char tmp;
         int verticali;
         int horizontali;
-        if (celuli.equals("X")) {
-            lifeСounter = lifeСounter - 1;
-        }
+
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 verticali = (v + i + y) % y;
                 horizontali = (h + j + x) % x;
-                tmp = String.valueOf(fieldOfLife[verticali][horizontali]);
-                if (tmp.equals("X")) {
+                tmp = fieldOfLife[verticali][horizontali];
+                if (tmp == 'X') {
                     lifeСounter++;
-                } else {
-                    continue;
                 }
             }
         }
-        if (celuli.equals("O")) {
-            if (lifeСounter == 3) {
-                return 'X';
-            } else {
-                return 'O';
-            }
-        } else if (lifeСounter > 3 || lifeСounter < 2) {
-            return 'O';
+        if (celuli=='X') {
+             lifeСounter --;
+             return getCellByState(shouldAliveCellLive(lifeСounter));
         }
-        return 'X';
+        else {return getCellByState(shouldDeadCellLive(lifeСounter));}
+
+    }
+
+    private static boolean shouldAliveCellLive(int lifCounter) {
+        return lifCounter > 1 && lifCounter < 4;
+    }
+
+    private static boolean shouldDeadCellLive(int lifCounter) {
+        return lifCounter == 3;
+    }
+
+    private static char getCellByState(boolean state) {
+        return state ? 'X' : 'O';
     }
 }
 
