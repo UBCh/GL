@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.example.GameOfLifeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-08-23T15:13:42" hostname="SUGARU" time="0.167">
+<testsuite name="org.example.GameOfLifeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2022-08-25T16:09:24" hostname="SUGARU" time="0.168">
   <properties/>
-  <testcase name="gliderFigure()" classname="org.example.GameOfLifeTest" time="0.078"/>
-  <testcase name="gliderFigureEasy()" classname="org.example.GameOfLifeTest" time="0.014"/>
-  <testcase name="oscillatorFigure()" classname="org.example.GameOfLifeTest" time="0.026"/>
-  <testcase name="stableFigure2()" classname="org.example.GameOfLifeTest" time="0.011"/>
-  <testcase name="oscillatorFigure2()" classname="org.example.GameOfLifeTest" time="0.02"/>
+  <testcase name="gliderFigure()" classname="org.example.GameOfLifeTest" time="0.062"/>
+  <testcase name="gliderFigureEasy()" classname="org.example.GameOfLifeTest" time="0.016"/>
+  <testcase name="oscillatorFigure()" classname="org.example.GameOfLifeTest" time="0.037"/>
+  <testcase name="stableFigure2()" classname="org.example.GameOfLifeTest" time="0.013"/>
+  <testcase name="oscillatorFigure2()" classname="org.example.GameOfLifeTest" time="0.022"/>
   <testcase name="stableFigure()" classname="org.example.GameOfLifeTest" time="0.012"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
