@@ -12,5 +12,6 @@ install:
 
 
 build_script:
+  - gradle --version
   - chmod u+x gradlew
   - ./gradlew test  --debug  # запускаем тест, флаг --info позволяет выводить больше информации
