@@ -12,13 +12,11 @@ public class GameOfLife {
   private  int numberOfCycles;
   private  char[][] originalPlayingField;
 
-
-
-  public void game(String fileNameInput, String fileNameOutput) {
+   public void game(String fileNameInput, String fileNameOutput) {
    inputFile(fileNameInput);
-   lifeCycle();
-    outputFile(fileNameOutput);
-  }
+   lifeCycle( );
+   outputFile(fileNameOutput);
+ }
 
   public  void inputFile(String fileNameInput)  {
     String path="src/test/resources/";
@@ -48,55 +46,56 @@ public class GameOfLife {
       newLife = new char[verticalSize][horizontalSize];
       for (int i = 0; i < verticalSize; i++) {
         for (int j = 0; j < horizontalSize; j++) {
-          newLife[i][j] = viabilityCheck(i, j);}
-      }
-      originalPlayingField = newLife;
-    }
+          newLife[i][j] = viabilityCheck(i, j);}}
+      originalPlayingField = newLife; }
   }
 
-  private  char viabilityCheck(int v, int h) {
+  private char viabilityCheck(int verticallyCoordinate, int horizontalCoordinate) {
     int counter = 0;
-    char celuli = originalPlayingField[v][h];
+    char celuli = originalPlayingField[verticallyCoordinate][horizontalCoordinate];
     char tmp;
     int verticali;
     int horizontali;
     for (int i = -1; i < 2; i++) {
       for (int j = -1; j < 2; j++) {
-        verticali = (v + i + verticalSize) % verticalSize;
-        horizontali = (h + j + horizontalSize) % horizontalSize;
+        verticali = (verticallyCoordinate + i + verticalSize) % verticalSize;
+        horizontali = (horizontalCoordinate + j + horizontalSize) % horizontalSize;
         tmp = originalPlayingField[verticali][horizontali];
         if (tmp == 'X') {counter++;}}
     }
-    if (celuli=='X') {counter--; return getCellByState(shouldAliveCellLive(counter)); }
-    else {return getCellByState(shouldDeadCellLive(counter));}
+    if (celuli == 'X') { counter--; return getCellByState(shouldAliveCellLive(counter));}
+    else { return getCellByState(shouldDeadCellLive(counter));}
   }
 
-  private static boolean shouldAliveCellLive(int lifCounter) {
-    return lifCounter > 1 && lifCounter < 4;
+  private boolean shouldAliveCellLive(int counter) {
+    return counter > 1 && counter < 4;
   }
 
-  private static boolean shouldDeadCellLive(int lifCounter) {
-    return lifCounter == 3;
+  private boolean shouldDeadCellLive(int counter) {
+    return counter == 3;
   }
 
-  private static char getCellByState(boolean state) {
+  private char getCellByState(boolean state) {
     return state ? 'X' : 'O';
   }
 
-  public  void outputFile(String fileNameOutput) {
-    String path="src/test/resources/";
+  public void outputFile(String fileNameOutput) {
+    String path = "src/test/resources/";
     StringBuilder stringBuilder = new StringBuilder( );
     char[][] tmp = originalPlayingField;
-    for (int G = 0; G < verticalSize; G++) {
-      for (int E = 0; E < horizontalSize; E++) {
-        stringBuilder.append(tmp[G][E]).append(" ");}
+    for (int i = 0; i < verticalSize; i++) {
+      for (int j = 0; j < horizontalSize; j++) {
+        stringBuilder.append(tmp[i][j]).append(" ");
+      }
       stringBuilder.deleteCharAt(stringBuilder.length( ) - 1);
       stringBuilder.append("\n");
-       try { BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path+fileNameOutput)));
-         out.append(stringBuilder);
-         out.close( ); }
-       catch (IOException e) {e.printStackTrace( );}
-    }}
+      try {
+        BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + fileNameOutput)));
+        out.append(stringBuilder);
+        out.close( );
+      } catch (IOException e) {
+        e.printStackTrace( );}}
+  }
 }
 
 
